@@ -1416,7 +1416,7 @@ button:disabled {
 .recording-panel,
 .archive-banner,
 .number-type-badge,
-.locked-answer,
+.choice-recorded,
 .navigation-log,
 .manual-handoff-note {
   display: flex;
@@ -1840,7 +1840,7 @@ button:disabled {
   width: 100%;
 }
 
-.locked-answer {
+.choice-recorded {
   gap: 9px;
   margin: 13px 0;
   padding: 9px 12px;
@@ -1858,6 +1858,21 @@ button:disabled {
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.place-cue {
+  display: inline-block;
+  margin: 0 0.08em;
+  padding: 0.02em 0.32em;
+  border: 2px solid currentColor;
+  border-radius: 0.35em;
+  color: var(--gold);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-underline-offset: 0.12em;
 }
 
 .raw-proof-rows {

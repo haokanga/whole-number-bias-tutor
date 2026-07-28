@@ -118,13 +118,13 @@
         correctInitial: "left",
         finalExpression: "0.7 > 0.52",
         nextLabel: "Activate SAIL",
-        proofIntro: "Start with the tenths. Click the tenths digit in each reading.",
+        proofIntro: "Start with the tenths. Select the digit in the tenths place of each number.",
         path: [
           {
             leftIndex: 2,
             rightIndex: 2,
             relation: ">",
-            prompt: "Click the tenths digit in each reading, then compare them.",
+            prompt: "Select the digit in the tenths place of each number, then compare them.",
             success: "7 tenths is greater than 5 tenths."
           }
         ],
@@ -173,7 +173,7 @@
           }
         ],
         mismatchFeedback: "Your comparison may be correct, but those digits do not prove it. Select digits in the same place, beginning from the left.",
-        mismatchFeedbackWhenInitialCorrect: "Your initial comparison is correct, but those digits do not prove it. Select digits in the same place, beginning from the left.",
+        mismatchFeedbackWhenInitialCorrect: "Your first choice is correct, but those digits do not show why. Select digits in the same place, beginning from the left.",
         mismatchFeedbackWhenInitialIncorrect: "Those digits do not prove the comparison. Select digits in the same place, beginning from the left.",
         relationFeedback: "Compare the selected tenths: 5 tenths is greater than 4 tenths.",
         correctFeedback: "Five tenths is greater than four tenths, so 0.53 is greater than 0.433."
@@ -205,14 +205,14 @@
             leftIndex: 2,
             rightIndex: 2,
             relation: "=",
-            prompt: "Click the tenths digits in both readings, then compare them.",
+            prompt: "Select the digit in the tenths place of each number, then compare them.",
             success: "The tenths are equal, so continue to the hundredths."
           }
         ],
         emptyQuestion: true,
         mismatchFeedback: "Select digits in the same place, beginning with the tenths.",
         relationFeedback: "Both tenths digits are 6, so they are equal. Continue to the hundredths.",
-        correctFeedback: "Both readings name six tenths. Writing a zero to the right does not change the value."
+        correctFeedback: "Both numbers name six tenths. Writing a zero to the right does not change the value."
       }
     },
     {
@@ -244,27 +244,27 @@
         correctInitial: "left",
         finalExpression: "1.2 > 1.109",
         nextLabel: "Continue to Round B",
-        proofIntro: "Select corresponding digit pairs from left to right.",
+        proofIntro: "Compare the whole-number parts first. If they are equal, move right through the decimal places.",
         revealHeadingsAfter: 2,
         path: [
           {
             leftIndex: 0,
             rightIndex: 0,
             relation: "=",
-            prompt: "Begin at the left. Select the ones digits in both readings.",
-            success: "Both readings have 1 one. Continue to the tenths."
+            prompt: "Start with the whole-number part. Select the digit in the ones place of each number.",
+            success: "The ones digits are equal, so move one place right to the tenths."
           },
           {
             leftIndex: 2,
             rightIndex: 2,
             relation: ">",
-            prompt: "The ones are equal. Select the tenths digits in both readings.",
-            success: "2 tenths is greater than 1 tenth."
+            prompt: "The digits in the ones place are equal. Move one place right and select the digit in the tenths place of each number.",
+            success: "At the tenths place, 2 is greater than 1."
           }
         ],
-        mismatchFeedback: "Compare digits in the same place, beginning at the left.",
+        mismatchFeedback: "Compare digits in the same place, starting with the whole-number part.",
         relationFeedback: "Compare corresponding places from left to right.",
-        correctFeedback: "The ones are equal. At the tenths place, 2 tenths is greater than 1 tenth, so 1.2 is greater."
+        correctFeedback: "The digits in the ones place are equal. At the tenths place, 2 is greater than 1, so 1.2 is greater than 1.109."
       }
     },
     {
@@ -287,20 +287,20 @@
         correctInitial: "right",
         finalExpression: "0.47 < 0.482",
         nextLabel: "Complete the navigation rule",
-        proofIntro: "Select corresponding digit pairs from left to right. Continue when a pair is equal.",
+        proofIntro: "Both numbers have 0 as the whole-number part, so begin with the tenths. Continue right when a pair is equal.",
         path: [
           {
             leftIndex: 2,
             rightIndex: 2,
             relation: "=",
-            prompt: "Select the tenths digits in both readings.",
+            prompt: "Select the digit in the tenths place of each number.",
             success: "The tenths are equal, so continue to the hundredths."
           },
           {
             leftIndex: 3,
             rightIndex: 3,
             relation: "<",
-            prompt: "The tenths are equal. Select the hundredths digits in both readings.",
+            prompt: "The tenths digits are equal. Move one place right and select the digit in the hundredths place of each number.",
             success: "7 hundredths is less than 8 hundredths."
           }
         ],
@@ -598,7 +598,7 @@
     dom.radarScreen.innerHTML = [
       '<div class="radar-content">',
       '<div class="radar-status"><span class="status-dot"></span>PLACE-VALUE RADAR</div>',
-      '<p class="radar-alert">DECIMAL LENGTHS DIFFER. LENGTH DOES NOT DECIDE SIZE. ALIGN AND COMPARE.</p>',
+      '<p class="radar-alert">ONE DECIMAL HAS MORE DIGITS. MORE DIGITS DO NOT MEAN GREATER. ALIGN AND COMPARE.</p>',
       '<p class="radar-copy">The radar is only a reminder. It does not identify the stronger orb.</p>',
       renderSailMini(),
       '</div>'
@@ -687,14 +687,14 @@
       renderFrozenArchiveBanner(),
       '<p class="screen-kicker">Bellum begins the active repair</p>',
       '<h2 id="screen-title" tabindex="-1">' + escapeHtml(screen.title) + '</h2>',
-      '<blockquote class="dialogue-quote">That method worked for 7 and 52 because both are whole numbers. But Specter’s new numbers, 0.7 and 0.52, are decimals. With decimals, the number of digits <strong>does not</strong> tell us which number is greater. To compare decimals correctly, let’s line up the decimal points and find the first place, from left to right, where the digits are different.</blockquote>',
+      '<blockquote class="dialogue-quote">That method worked for 7 and 52 because both are whole numbers. But Specter’s new numbers, 0.7 and 0.52, are decimals. With decimals, having more digits <strong>does not</strong> mean a number is greater. To compare decimals correctly, let’s line up the decimal points and find the first place, from left to right, where the digits are different.</blockquote>',
       activity.completed
         ? renderCompletedAlignment("0.7", "0.52")
-        : renderAlignmentTask("0.7", "0.52", activity, "Tap the decimal point in each reading."),
+        : renderAlignmentTask("0.7", "0.52", activity, "Tap the decimal point in each number."),
       renderActivityMessage(activity),
       activity.completed
         ? '<div class="info-callout"><span class="callout-icon" aria-hidden="true">✓</span><span>The decimal points are aligned. Tenths now sit under tenths. The hundredths cell after 0.7 stays empty.</span></div>'
-        : '<p class="interaction-note">Use the real buttons in the readings. If you tap a digit instead, Bellum will help you realign.</p>',
+        : '<p class="interaction-note">Use the real buttons in the numbers. If you tap a digit instead, Bellum will help you realign.</p>',
       '<div class="screen-actions">',
       activity.completed ? '<button class="primary-button" type="button" data-action="continue">Compare the aligned place values</button>' : '',
       '</div>',
@@ -715,9 +715,9 @@
     else task = renderCompletedTrial(item, activity);
 
     const lead = item.initialRequired && !activity.initialLocked
-      ? '<p class="screen-lead">Choose and lock your initial comparison. You will build the place-value proof next.</p>'
+      ? '<p class="screen-lead">First, compare the plasma orbs. Next, use place value to show why.</p>'
       : screen.id === "repair-proof"
-        ? '<blockquote class="dialogue-quote">Start with the tenths. Click the tenths digit in each reading.</blockquote>'
+        ? '<blockquote class="dialogue-quote">Start with the tenths. Select the digit in the tenths place of each number.</blockquote>'
         : '<p class="screen-lead">' + escapeHtml(item.proofIntro) + '</p>';
 
     return [
@@ -736,22 +736,22 @@
     return [
       renderOrbs(item.left, item.right, true),
       '<form id="initial-comparison-form" novalidate>',
-      '<fieldset class="question-group"><legend>Make and lock your initial comparison.</legend>',
+      '<fieldset class="question-group"><legend>Which comparison is correct?</legend>',
       '<div class="choice-grid three-up">',
       renderComparisonChoice("left", item.left + " is greater", activity.initialComparison),
       renderComparisonChoice("equal", "They are equal", activity.initialComparison),
       renderComparisonChoice("right", item.right + " is greater", activity.initialComparison),
       '</div></fieldset>',
       renderActivityMessage(activity),
-      '<div class="screen-actions"><button class="primary-button" type="submit">Lock initial comparison</button></div>',
+      '<div class="screen-actions"><button class="primary-button" type="submit">Confirm choice</button></div>',
       '</form>'
     ].join("");
   }
 
   function renderTrialAlignment(item, activity) {
     return [
-      '<div class="locked-answer"><span aria-hidden="true">🔒</span><span>Initial comparison locked. Now build the place-value proof.</span></div>',
-      renderAlignmentTask(item.left, item.right, activity, "Tap the decimal point in each reading to align corresponding places."),
+      '<div class="choice-recorded"><span aria-hidden="true">✓</span><span>Choice confirmed. Now use place value to show why.</span></div>',
+      renderAlignmentTask(item.left, item.right, activity, "Tap the decimal point in each number to align corresponding places."),
       renderActivityMessage(activity)
     ].join("");
   }
@@ -760,10 +760,10 @@
     const step = item.path[activity.pathIndex];
     const showAligned = item.alignedDisplay || activity.showHeadings;
     return [
-      item.initialRequired ? '<div class="locked-answer"><span aria-hidden="true">🔒</span><span>Initial comparison locked. The proof is recorded separately.</span></div>' : '',
+      item.initialRequired ? '<div class="choice-recorded"><span aria-hidden="true">✓</span><span>Choice confirmed. Now use place value to show why.</span></div>' : '',
       '<section class="proof-workbench" aria-labelledby="proof-prompt">',
       '<div class="proof-progress">Place-value proof · step ' + (activity.pathIndex + 1) + ' of ' + item.path.length + '</div>',
-      '<h3 id="proof-prompt">' + escapeHtml(step.prompt) + '</h3>',
+      '<h3 id="proof-prompt">' + renderProofPrompt(step) + '</h3>',
       showAligned
         ? renderPlaceGrid(item.left, item.right, activity, true)
         : renderRawProofRows(item.left, item.right, activity),
@@ -773,10 +773,19 @@
       renderInlineRelationRow(item, activity),
       '</fieldset>',
       renderActivityMessage(activity),
-      '<div class="screen-actions"><button class="primary-button" type="submit">Lock this proof step</button></div>',
+      '<div class="screen-actions"><button class="primary-button" type="submit">Check this step</button></div>',
       '</form>',
       '</section>'
     ].join("");
+  }
+
+  function renderProofPrompt(step) {
+    const currentPlace = placeNameFromIndex(step.leftIndex);
+    return escapeHtml(step.prompt).replace(/\b(ones|tenths|hundredths|thousandths)\b/gi, function (match) {
+      return match.toLowerCase() === currentPlace
+        ? '<strong class="place-cue">' + match + '</strong>'
+        : match;
+    });
   }
 
   function renderEmptyPlaceStep(item, activity) {
@@ -813,15 +822,11 @@
   }
 
   function renderCompletedTrial(item, activity) {
-    const firstWasCorrect = activity.initialComparison === null || activity.initialComparison === item.correctInitial;
     return [
       renderOrbs(item.left, item.right, true, item.correctInitial + "-contained"),
       '<section class="feedback-panel success" id="feedback-panel" role="status" tabindex="-1">',
-      '<h3 class="feedback-title"><span aria-hidden="true">✓</span>PLACE-VALUE PROOF LOCKED</h3>',
+      '<h3 class="feedback-title"><span aria-hidden="true">✓</span>PLACE-VALUE PROOF COMPLETE</h3>',
       '<p class="feedback-detail">' + escapeHtml(item.correctFeedback) + '</p>',
-      item.initialRequired && !firstWasCorrect
-        ? '<p class="feedback-detail">Your initial comparison has been preserved in the log separately from the proof you completed.</p>'
-        : '',
       '</section>',
       screenOutcome(item),
       '<div class="screen-actions"><button class="primary-button" type="button" data-action="continue">' + escapeHtml(item.nextLabel) + '</button></div>'
@@ -880,7 +885,7 @@
       options,
       '</fieldset>',
       runtime.message ? '<section class="feedback-panel ' + (runtime.completed ? 'success' : 'retry') + '" id="feedback-panel" role="status" tabindex="-1"><h3 class="feedback-title"><span aria-hidden="true">' + (runtime.completed ? '✓' : '!') + '</span>' + (runtime.completed ? 'Boundary restored' : 'Repair the boundary') + '</h3><p class="feedback-detail">' + escapeHtml(runtime.message) + '</p></section>' : '',
-      runtime.completed ? '<blockquote class="dialogue-quote">Sometimes counting decimal digits may happen to point toward the correct orb. That still does not prove the comparison. For decimals, place value must prove the answer.</blockquote>' : '',
+      runtime.completed ? '<blockquote class="dialogue-quote">Sometimes counting decimal digits may happen to give the correct answer, but it is not a reliable method. To compare decimals, line up the decimal points and compare digits in the same place from left to right.</blockquote>' : '',
       '<div class="screen-actions">',
       runtime.completed
         ? '<button class="primary-button" type="button" data-action="continue">Return to the Ocean Adventure mission</button>'
@@ -902,7 +907,7 @@
         ? '<section class="feedback-panel success" role="status"><h3 class="feedback-title"><span aria-hidden="true">✓</span>MISSION HANDOFF REACHED</h3><p class="feedback-detail">The existing SpecterOrb1 activity would begin here. CTAT is intentionally outside this local prototype.</p></section>'
         : '',
       '<div class="completion-grid">',
-      renderCompletionStat(summary.initialCorrect + "/" + summary.initialTotal, "First initial comparisons"),
+      renderCompletionStat(summary.initialCorrect + "/" + summary.initialTotal, "First comparison choices"),
       renderCompletionStat(summary.proofCorrect + "/" + summary.proofTotal, "First proof steps"),
       renderCompletionStat(formatDuration(summary.elapsedMs), "Session duration"),
       '</div>',
@@ -958,9 +963,9 @@
       const isPoint = character === ".";
       const label = isPoint ? "decimal point" : "digit " + character;
       const pressed = isPoint && selected;
-      return '<button class="align-char ' + (isPoint ? 'decimal-point' : '') + (pressed ? ' selected' : '') + '" type="button" data-action="align-char" data-side="' + side + '" data-index="' + index + '" data-character="' + escapeHtml(character) + '" aria-label="' + capitalize(side) + ' reading, ' + label + '" aria-pressed="' + String(pressed) + '">' + escapeHtml(character) + '</button>';
+      return '<button class="align-char ' + (isPoint ? 'decimal-point' : '') + (pressed ? ' selected' : '') + '" type="button" data-action="align-char" data-side="' + side + '" data-index="' + index + '" data-character="' + escapeHtml(character) + '" aria-label="' + capitalize(side) + ' number, ' + label + '" aria-pressed="' + String(pressed) + '">' + escapeHtml(character) + '</button>';
     }).join("");
-    return '<div class="align-number" aria-label="' + capitalize(side) + ' reading ' + escapeHtml(value) + '">' + chars + '</div>';
+    return '<div class="align-number" aria-label="' + capitalize(side) + ' number ' + escapeHtml(value) + '">' + chars + '</div>';
   }
 
   function renderCompletedAlignment(left, right) {
@@ -976,7 +981,7 @@
     const maxPlaces = Math.max(decimalPlaces(left), decimalPlaces(right));
     const labels = ["Ones", "Decimal point", "Tenths", "Hundredths", "Thousandths"].slice(0, maxPlaces + 2);
     return [
-      '<div class="place-grid" style="--data-columns:' + labels.length + '" aria-label="Readings in place-value columns">',
+      '<div class="place-grid" style="--data-columns:' + labels.length + '" aria-label="Numbers in place-value columns">',
       '<span class="place-heading row-heading" aria-hidden="true"></span>',
       labels.map(function (label) { return '<span class="place-heading">' + escapeHtml(label) + '</span>'; }).join(""),
       renderPlaceRow("LEFT", left, maxPlaces, activity, "left", interactive, emphasizeEmpty),
@@ -997,13 +1002,13 @@
       if (character === ".") return '<span class="place-cell point-cell" aria-label="decimal point">.</span>';
       if (!interactive) return '<span class="place-cell digit-cell">' + escapeHtml(character) + '</span>';
       const selected = side === "left" ? activity.selectedLeft === rawIndex : activity.selectedRight === rawIndex;
-      return '<button class="place-cell digit-button ' + (selected ? 'selected' : '') + '" type="button" data-action="proof-digit" data-side="' + side + '" data-index="' + rawIndex + '" aria-pressed="' + String(selected) + '" aria-label="' + capitalize(side) + ' reading, ' + character + ' in the ' + escapeHtml(placeNameFromIndex(rawIndex)) + ' place">' + escapeHtml(character) + '</button>';
+      return '<button class="place-cell digit-button ' + (selected ? 'selected' : '') + '" type="button" data-action="proof-digit" data-side="' + side + '" data-index="' + rawIndex + '" aria-pressed="' + String(selected) + '" aria-label="' + capitalize(side) + ' number, ' + character + ' in the ' + escapeHtml(placeNameFromIndex(rawIndex)) + ' place">' + escapeHtml(character) + '</button>';
     }).join("");
   }
 
   function renderRawProofRows(left, right, activity) {
     return [
-      '<div class="raw-proof-rows" aria-label="Select corresponding digits from each reading">',
+      '<div class="raw-proof-rows" aria-label="Select corresponding digits from each number">',
       '<div><span>LEFT</span>' + renderProofNumber("left", left, activity.selectedLeft) + '</div>',
       '<div><span>RIGHT</span>' + renderProofNumber("right", right, activity.selectedRight) + '</div>',
       '</div>'
@@ -1014,7 +1019,7 @@
     const chars = Array.from(value).map(function (character, index) {
       if (character === ".") return '<span class="raw-decimal-point" aria-label="decimal point">.</span>';
       const selected = selectedIndex === index;
-      return '<button class="raw-digit-button ' + (selected ? 'selected' : '') + '" type="button" data-action="proof-digit" data-side="' + side + '" data-index="' + index + '" aria-pressed="' + String(selected) + '" aria-label="' + capitalize(side) + ' reading, ' + character + ' in the ' + escapeHtml(placeNameFromIndex(index)) + ' place">' + escapeHtml(character) + '</button>';
+      return '<button class="raw-digit-button ' + (selected ? 'selected' : '') + '" type="button" data-action="proof-digit" data-side="' + side + '" data-index="' + index + '" aria-pressed="' + String(selected) + '" aria-label="' + capitalize(side) + ' number, ' + character + ' in the ' + escapeHtml(placeNameFromIndex(index)) + ' place">' + escapeHtml(character) + '</button>';
     }).join("");
     return '<span class="raw-number">' + chars + '</span>';
   }
@@ -1163,7 +1168,7 @@
     const data = new FormData(form);
     const response = data.get("initial-comparison");
     if (!response) {
-      activity.message = "Choose an initial comparison before locking it.";
+      activity.message = "Choose a comparison before continuing.";
       activity.messageKind = "retry";
       persist();
       render();
@@ -1173,7 +1178,7 @@
 
     activity.initialComparison = response;
     activity.initialLocked = true;
-    activity.message = "Initial comparison locked. Now show the place-value proof.";
+    activity.message = "";
     activity.messageKind = "neutral";
     logEvent("response", {
       itemId: item.id,
@@ -1229,7 +1234,7 @@
     activity.relation = relation;
 
     if (activity.selectedLeft === null || activity.selectedRight === null || !relation) {
-      activity.message = "Select one digit from each reading and choose how they compare.";
+      activity.message = "Select one digit from each number and choose how they compare.";
       activity.messageKind = "retry";
       persist();
       render();
