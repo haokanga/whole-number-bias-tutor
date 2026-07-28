@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A CTAT-free Ocean Adventure V3 research prototype for repairing deceptive overgeneralization in decimal comparison.">
+  <title>Ocean Adventure — Specter’s Whole-Number Trap · V3</title>
+  <link rel="icon" type="image/png" href="assets/bellum-headshot.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#mission-frame">Skip to the mission</a>
+
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand-lockup">
+        <p class="brand-kicker">Ocean Adventure · V3 research prototype</p>
+        <h1>Contain the Plasma Orbs</h1>
+        <p class="brand-subtitle">Specter's Whole-Number Trap</p>
+      </div>
+
+      <div class="app-actions" aria-label="Prototype controls">
+        <button class="utility-button" id="log-toggle" type="button" aria-controls="log-drawer" aria-expanded="false">
+          Experiment log <span class="count-badge" id="event-count">0</span>
+        </button>
+        <button class="utility-button" id="restart-button" type="button">Restart mission</button>
+      </div>
+    </header>
+
+    <main class="mission-frame" id="mission-frame" tabindex="-1">
+      <div class="scene-art" aria-hidden="true">
+        <img class="ocean-background" src="assets/ocean-background.png" alt="">
+        <div class="ocean-shade"></div>
+        <img class="trap-deck" src="assets/trap-deck.png" alt="">
+        <img class="trap-open-overlay" id="trap-open-overlay" src="assets/trap-open-left.png" alt="" hidden>
+      </div>
+
+      <header class="mission-header">
+        <div class="mission-heading">
+          <span class="phase-pill" id="phase-label">Mission briefing</span>
+          <span class="screen-counter" id="screen-counter">Step 1</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Mission progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+          <span class="progress-fill" id="progress-fill"></span>
+        </div>
+      </header>
+
+      <div class="stage-layout">
+        <aside class="character-card" id="character-card" aria-label="Current speaker">
+          <div class="character-portrait-wrap">
+            <img class="character-portrait" id="character-portrait" src="assets/first-mate-explain.png" alt="Bellum, Agent Decimal's First Mate">
+          </div>
+          <div class="speaker-tag">
+            <span class="speaker-role" id="speaker-role">First Mate</span>
+            <strong id="speaker-name">Bellum</strong>
+          </div>
+        </aside>
+
+        <section class="screen-card" id="screen-mount" aria-live="off"></section>
+
+        <aside class="radar-card" id="radar-panel" aria-labelledby="radar-title" hidden>
+          <div class="radar-header">
+            <div>
+              <p class="radar-kicker">Training instrument</p>
+              <h2 id="radar-title">Place-Value Radar</h2>
+            </div>
+            <span class="training-state" id="radar-state-badge">Training support</span>
+          </div>
+          <div class="radar-screen" id="radar-screen" aria-live="polite"></div>
+        </aside>
+      </div>
+
+      <footer class="mission-footer">
+        <p><strong>Prototype boundary:</strong> no CTAT, no network calls, and no personal data collection.</p>
+        <span id="save-status" role="status" aria-live="polite">Progress is stored only in this browser.</span>
+      </footer>
+    </main>
+
+    <details class="research-tools">
+      <summary>Researcher controls</summary>
+      <div class="research-tools-grid">
+        <label for="screen-jump">
+          Jump to a prototype screen
+          <select id="screen-jump"></select>
+        </label>
+        <button class="secondary-button" id="jump-button" type="button">Jump</button>
+        <button class="secondary-button" id="download-json" type="button">Download JSON log</button>
+        <button class="secondary-button" id="download-csv" type="button">Download CSV log</button>
+        <button class="danger-button" id="clear-data" type="button">Clear all local data</button>
+      </div>
+      <p class="research-note">Jumping is for design review. It is recorded in the local log and should not be used during a learner run.</p>
+    </details>
+  </div>
+
+  <aside class="log-drawer" id="log-drawer" aria-labelledby="log-title" hidden>
+    <div class="log-drawer-header">
+      <div>
+        <p class="radar-kicker">Local only</p>
+        <h2 id="log-title">Experiment log</h2>
+      </div>
+      <button class="icon-button" id="log-close" type="button" aria-label="Close experiment log">×</button>
+    </div>
+    <p class="log-description">Initial comparisons and place-value proof actions are logged separately. No information leaves this device.</p>
+    <div class="log-summary" id="log-summary"></div>
+    <div class="log-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Screen</th>
+            <th scope="col">Event</th>
+            <th scope="col">Response</th>
+            <th scope="col">Correct</th>
+          </tr>
+        </thead>
+        <tbody id="log-table-body"></tbody>
+      </table>
+    </div>
+  </aside>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
