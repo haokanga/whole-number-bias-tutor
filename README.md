@@ -2,6 +2,10 @@
 
 This repository contains the standalone HTML prototype of the approved V3 instructional script. It is a pre-battle sequence for Ocean Adventure’s existing **Contain the Plasma Orbs** mission. It does not require CTAT or a build step.
 
+## Authoritative source
+
+This Git repository is the single editable source for both local experimentation and the public GitHub Pages tutor. Make future V3 changes here; every push to `main` deploys this same source state.
+
 ## Public site
 
 Open the tutor at **https://haokanga.github.io/whole-number-bias-tutor/**.
@@ -27,7 +31,7 @@ The complete fourteen-scene path is retained:
 1. Bellum opens a recovered recording of Specter’s prior encounter with another agent.
 2. Inside the clearly labeled archive, the prior agent succeeds on the whole-number comparison `7` versus `52`.
 3. Specter immediately reuses that successful method with `0.7` versus `0.52`; the prior agent chooses `0.52`, and containment fails.
-4. **TRAP SPRUNG!**, **CONTAINMENT FAILED**, an X icon, containment behavior, and the enlarged existing Specter artwork communicate the failure without relying on red alone.
+4. **MY WHOLE-NUMBER TRAP WORKED!**, **CONTAINMENT FAILED**, an X icon, containment behavior, and the enlarged existing Specter artwork communicate the failure without relying on red alone.
 5. Bellum freezes the archived replay and begins the repair. The learner taps both decimal points and aligns `0.7` with `0.52`; the empty hundredths place remains empty.
 6. The learner selects `7` tenths and `5` tenths and locks `0.7 > 0.52`. The central repair never rewrites `0.7` as `0.70`.
 7. Bellum names the whole-number boundary and activates the SAIL Place-Value Radar.
@@ -73,7 +77,7 @@ These are observable responses in this prototype. A selected answer or proof is 
 - `app.js`: V3 scene sequence, feedback, scaffold fading, local persistence, and exports
 - `assets/`: reused Ocean Adventure artwork copied from the downloaded source package
 
-The downloaded package and its CTAT content are not modified. The final containment controls are a disabled local preview; the **Begin Contain the Plasma Orbs** button records that the handoff was reached and explicitly stops where the existing CTAT mission would begin. There are no app-initiated network calls or personal-data prompts.
+The downloaded package and its CTAT content are not modified. The **Begin Contain the Plasma Orbs** button records that the handoff was reached and explicitly stops where the existing CTAT mission would begin. There are no app-initiated network calls or personal-data prompts.
 
 ## Deployment
 

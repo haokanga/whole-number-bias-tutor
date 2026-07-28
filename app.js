@@ -336,7 +336,7 @@
     },
     {
       value: "bounded",
-      label: "Digit count can help compare positive whole numbers written normally. For decimals, align decimal points and compare corresponding places."
+      label: "Digit count can help compare positive whole numbers. For decimals, align decimal points and compare corresponding places."
     },
     {
       value: "shorter",
@@ -630,7 +630,6 @@
       '<div><strong>Recovered Battle Log</strong><span>Prior Encounter with Specter</span></div>',
       '</section>',
       '<blockquote class="dialogue-quote">Agent Decimal, we recovered a recording of Specter’s last encounter with another agent. His ghostly scouts had studied how agents compare whole numbers during their training. Watch how he used that knowledge to set a trap.</blockquote>',
-      renderMissionControls(false),
       '<div class="screen-actions"><button class="primary-button" type="button" data-action="continue">Play Recovered Recording</button></div>',
       '</article>'
     ].join("");
@@ -841,9 +840,9 @@
       '<article>',
       '<p class="screen-kicker">Bellum names the repaired boundary</p>',
       '<h2 id="screen-title" tabindex="-1">' + escapeHtml(screen.title) + '</h2>',
-      '<blockquote class="dialogue-quote">Counting digits helped with 7 and 52 because both were positive whole numbers written normally. For decimals, the number of written digits does not decide which value is greater. Align the decimal points and compare the same place values from left to right.</blockquote>',
+      '<blockquote class="dialogue-quote">Counting digits helped with 7 and 52 because both were positive whole numbers. For decimals, the number of written digits does not decide which value is greater. Align the decimal points and compare the same place values from left to right.</blockquote>',
       '<div class="type-contrast" aria-label="Number-type boundary">',
-      '<section class="type-card whole"><span class="type-icon" aria-hidden="true">▦</span><strong>WHOLE NUMBERS</strong><p>For positive whole numbers written normally, different digit counts can help compare size.</p></section>',
+      '<section class="type-card whole"><span class="type-icon" aria-hidden="true">▦</span><strong>WHOLE NUMBERS</strong><p>For positive whole numbers, different digit counts can help compare size.</p></section>',
       '<section class="type-card decimal"><span class="type-icon" aria-hidden="true">·</span><strong>DECIMALS</strong><p>The number of written digits does not decide size. Align and compare corresponding places.</p></section>',
       '</div>',
       '<blockquote class="dialogue-quote">The radar is only a reminder. It does not identify the stronger orb.</blockquote>',
@@ -899,7 +898,6 @@
       '<p class="screen-kicker">Back to the present-day mission</p>',
       '<h2 id="screen-title" tabindex="-1">' + escapeHtml(screen.title) + '</h2>',
       '<blockquote class="dialogue-quote">Now you know how Specter’s trap works. Contain his plasma orbs by comparing their values.</blockquote>',
-      renderMissionControls(true),
       state.handoffComplete
         ? '<section class="feedback-panel success" role="status"><h3 class="feedback-title"><span aria-hidden="true">✓</span>MISSION HANDOFF REACHED</h3><p class="feedback-detail">The existing SpecterOrb1 activity would begin here. CTAT is intentionally outside this local prototype.</p></section>'
         : '',
@@ -916,17 +914,6 @@
       '<button class="secondary-button" type="button" data-action="download-csv">Download CSV log</button>',
       '</div>',
       '</article>'
-    ].join("");
-  }
-
-  function renderMissionControls(active) {
-    return [
-      '<section class="mission-controls-preview ' + (active ? 'active' : 'inactive') + '" aria-label="Contain the Plasma Orbs mission-control preview">',
-      '<div><span class="control-light" aria-hidden="true"></span><strong>Containment controls</strong><small>' + (active ? 'READY — LOCAL PREVIEW' : 'TEMPORARILY INACTIVE') + '</small></div>',
-      '<button type="button" disabled>Left field</button>',
-      '<button type="button" disabled>Equalize</button>',
-      '<button type="button" disabled>Right field</button>',
-      '</section>'
     ].join("");
   }
 
