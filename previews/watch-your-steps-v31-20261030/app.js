@@ -38,7 +38,7 @@
   function telecom(forceFlint){
     const character=forceFlint||['ready','running'].includes(state.mode)?'Flint':state.mode==='trap'?'Specter':'Bellum';
     const portrait=character==='Specter'?'specter.png':character==='Flint'?'flint-portrait.png':state.decisionPassed?'bellum-success.png':'bellum-explain.png';
-    const context=character==='Specter'?'Incoming transmission':character==='Flint'?'Recovered recording':practiceScene()?'Live practice':isRepair()?'Repair simulation':'Mission briefing';
+    const context=character==='Specter'?'Incoming transmission':character==='Flint'?'Recovered recording':state.mode==='complete'?'Mission complete':practiceScene()?'Live practice':isRepair()?'Repair simulation':'Mission briefing';
     return '<aside class="telecom-panel" data-character="'+character+'" aria-label="'+character+' speaking"><div class="telecom-screen"><img class="telecom-portrait" src="assets/'+portrait+'" alt="'+character+'"></div><div class="telecom-caption"><strong>'+character+'</strong><small>'+context+'</small>'+(character==='Specter'?'<span class="laugh-cloud">HA! HA! HA!</span>':'')+'</div></aside>';
   }
   function sceneConfig(){
@@ -116,6 +116,11 @@
     const option=(value,text)=>'<label class="choice-card" data-selected="'+(state.decisionChoice===value)+'"><input type="radio" name="route-decision" value="'+value+'"'+(state.decisionChoice===value?' checked':'')+'><span class="option-label">'+emphasizeTerms(text)+'</span></label>';
     return '<form id="decision-form" novalidate><fieldset class="choice-set"><legend>Choose one option. Then check your choice.</legend>'+option('continue','Add 1.13 and continue')+option('disarm',disarmLabel)+'</fieldset><button class="primary-button" type="submit">Check my choice →</button></form>';
   }
+  function completionScreen(){
+    const stop='<section class="summary-route summary-route-stop" aria-labelledby="route-stop-title"><h3 id="route-stop-title">1.96 → 1.98 → 1.100</h3><div class="summary-route-body" tabindex="0" aria-label="Why the first sequence must stop"><p>Compare the decreasing pair: <strong>1.98 → 1.100</strong>.</p><p>Both numbers have <strong>1 in the ones place</strong>. Now compare the <strong>tenths digits—the first digits after the decimal point</strong>:</p><p class="tenths-comparison" aria-label="1.98 has tenths digit 9; 1.100 has tenths digit 1">1.<span class="tenths-digit">9</span>8 <span aria-hidden="true">→</span> 1.<span class="tenths-digit">1</span>00</p><p>The tenths digit decreases from <strong>9 to 1</strong>, so <strong>1.100 is smaller than 1.98</strong>. This sequence contains a decrease, so it is <strong>not an increasing sequence</strong>.</p></div><p class="summary-action"><strong>Do not continue. Disarm the trap.</strong></p></section>';
+    const go='<section class="summary-route summary-route-continue" aria-labelledby="route-continue-title"><h3 id="route-continue-title">1.096 → 1.098 → 1.100</h3><div class="summary-route-body" tabindex="0" aria-label="Why the second sequence can continue"><p>This <strong>is an increasing sequence</strong>. Every number is greater than the number before it, and each step increases by <strong>0.002</strong>.</p></div><p class="summary-action"><strong>Continue with 1.102.</strong></p></section>';
+    return '<section class="completion-screen" aria-labelledby="dialogue-title"><div class="completion-heading">'+telecom()+'<h2 id="dialogue-title" tabindex="-1">Compare the two sequences</h2></div><div class="completion-summary">'+emphasizeTerms(stop+go)+'</div><p class="completion-rule">Before adding another number, check that the whole sequence increases.</p><p class="button-note">Mission complete. Use Restart to play again.</p></section>';
+  }
   function dialogue(){
     const f=currentFlight();let title='',copy='',controls='',tip='';
     if(state.mode==='intro'){
@@ -141,8 +146,6 @@
       copy=state.practiceAnimating?'Your number is correct. Watch Flint enter the number and climb.':state.feedback?'':'Check the whole sequence. Enter the next number if every step increases by the same amount. Otherwise, disarm the trap.';
       controls=state.practiceAnimating?'<p class="button-note">Flint is climbing. The next route becomes available after the climb.</p>':passed?button(state.practiceIndex<L.PRACTICES.length-1?'Check the next route →':'Complete the mission →',state.practiceIndex<L.PRACTICES.length-1?'practice:next':'practice:finish'):
         '<div class="practice-choices"><form id="practice-answer-form" class="number-form" novalidate><div class="number-field"><label for="practice-next-reading">Next number</label><input id="practice-next-reading" name="practice-next-reading" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="43" aria-describedby="dialogue-title'+(state.feedback?' feedback':'')+'"></div><button class="primary-button" type="submit">Continue with this number</button></form><p class="practice-or">or</p>'+button(disarmLabel,'practice:reject','secondary-button')+'</div>';
-    }else if(state.mode==='complete'){
-      title='Watch every step!';copy='You disarmed <strong>1.96, 1.98, 1.100</strong> because the sequence contains a decrease. The different route <strong>1.096, 1.098, 1.100</strong> continues with <strong>1.102</strong>. Check the whole sequence before entering another number.';controls='<p class="button-note">Mission complete. Use Restart to play again.</p>';
     }
     const special=/^(?:<div class="pair-choices|<form|<div class="practice-choices)/.test(controls),speaker=state.mode==='trap'?'Specter':['ready','running'].includes(state.mode)?'Flint':'Bellum';
     return '<section class="dialogue-panel" aria-labelledby="dialogue-title">'+telecom()+'<div class="dialogue-content"><h2 id="dialogue-title" tabindex="-1">'+emphasizeTerms(title)+'</h2><div class="dialogue-reading" tabindex="0" aria-label="'+speaker+'’s message"><p class="speaker">'+speaker+' says:</p><p class="dialogue-copy'+(state.mode==='trap'?' speech-bubble':'')+'">'+emphasizeTerms(copy,['success','pair','decision','disarmed','complete'].includes(state.mode))+'</p>'+(state.feedback?'<p id="feedback" class="feedback '+(state.feedbackKind==='success'?'success':'')+'" role="status" tabindex="-1">'+emphasizeTerms(esc(state.feedback),true)+'</p>':'')+(tip?'<p class="lesson-tip">'+emphasizeTerms(tip)+'</p>':'')+'</div><div class="dialogue-actions">'+(special?controls:'<div class="actions">'+controls+'</div>')+'</div></div></section>';
@@ -170,7 +173,8 @@
   }
   function focusVisible(element){if(!element)return;element.focus({preventScroll:true});const r=element.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)element.scrollIntoView({block:'center',behavior:'instant'});}
   function render(options){
-    app.innerHTML='<section class="mission">'+scene()+'<div class="mission-sidebar">'+dialogue()+missionLog()+'</div></section>';
+    app.classList.toggle('showing-completion',state.mode==='complete');
+    app.innerHTML=state.mode==='complete'?completionScreen():'<section class="mission">'+scene()+'<div class="mission-sidebar">'+dialogue()+missionLog()+'</div></section>';
     document.documentElement.dataset.stage=state.mode;document.documentElement.dataset.flight=String(state.flight+1);positionActor(sceneProgress());
     if(options?.focusAction)focusVisible(app.querySelector('[data-action="'+options.focusAction+'"]'));
     else if(options?.focus)focusVisible(document.getElementById('dialogue-title'));
@@ -247,7 +251,7 @@
   document.querySelector('.skip-link').addEventListener('click',event=>{event.preventDefault();focusVisible(document.getElementById('dialogue-title'));});
   document.getElementById('export-responses').addEventListener('click',()=>{
     const attempts=Object.fromEntries(Object.entries(state.attempts).map(([task,rows])=>[task,{first:rows[0]||null,last:rows.at(-1)||null,attempts:rows}])),practiceCases=practiceSummaries();attempts.practice.cases=practiceCases;
-    const data={activity:'flint-upstairs',version:'3.1',local_review:true,completed:state.mode==='complete'&&state.practicePassed.every(Boolean),attempts,practiceCases,events:state.events};
+    const data={activity:'flint-upstairs',version:'3.1.1',local_review:true,completed:state.mode==='complete'&&state.practicePassed.every(Boolean),attempts,practiceCases,events:state.events};
     const href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=href;a.download='watch-your-steps-responses.json';a.click();setTimeout(()=>URL.revokeObjectURL(href),1000);
   });
   window.UpstairsPreview=Object.freeze({getState:snapshot});fitGame();reset();
