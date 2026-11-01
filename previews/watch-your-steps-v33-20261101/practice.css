@@ -1,0 +1,7 @@
+/* Practice uses the same stairwell as the recovered recording. */
+.practice-scene .scene-strip { border-bottom-color: #6e947a; }
+.practice-choices { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.practice-choices .number-form { margin-top: 0; }
+.practice-or { margin: 0; text-align: center; color: #c1d4c7; font-size: 16px; line-height: 1.5; }
+.practice-choices > .secondary-button { font-size: 16px; line-height: 1.5; }
+.practice-route-heading { margin: 0; font-size: 20px; line-height: 1.4; color: #f0d595; }
