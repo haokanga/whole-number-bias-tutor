@@ -1,0 +1,62 @@
+.tower-scene.upstairs-numbered-scene { display:block; width:100%; height:auto; aspect-ratio:800 / 520; overflow:hidden; background:#102e36; }
+.upstairs-numbered-scene .up-step-face { fill:url(#up-stone); stroke:#7b9b8a; stroke-width:2; }
+.upstairs-numbered-scene .up-stone-seam { fill:none; stroke:#9fb19b; stroke-opacity:.18; stroke-width:2; }
+.upstairs-numbered-scene .up-tread { fill:#b9c8a3; }
+.upstairs-numbered-scene .up-step-number { font-family:ui-rounded,"SF Pro Rounded",system-ui,sans-serif; font-size:48px; font-weight:750; fill:#fff4d2; text-anchor:middle; dominant-baseline:central; paint-order:stroke; stroke:#203f40; stroke-width:2; }
+.upstairs-numbered-scene .up-step-feedback { opacity:0; fill:none; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; pointer-events:none; }
+.up-step-feedback .up-safe-check,.up-step-feedback .up-trap-cross { display:none; }
+.up-safe .up-step-feedback .up-safe-check,.up-bad .up-step-feedback .up-trap-cross { display:block; }
+.upstairs-numbered-scene .up-safe .up-step-face { fill:url(#up-safe-stone); stroke:#6bdca6; }
+.upstairs-numbered-scene .up-safe .up-tread { fill:#8be3b5; }
+.upstairs-numbered-scene .up-safe .up-step-feedback { opacity:1; stroke:#c1ffda; }
+.upstairs-numbered-scene .up-bad .up-step-face { fill:#6b3844; stroke:#ffa0a3; }
+.upstairs-numbered-scene .up-bad .up-tread { fill:#fa9298; }
+.upstairs-numbered-scene .up-bad .up-step-feedback { opacity:1; stroke:#ffb2b7; }
+.upstairs-numbered-scene .up-step-trace { fill:none; stroke:#ff919a; stroke-width:2; stroke-dasharray:6 6; opacity:0; }
+.upstairs-numbered-scene .up-ghost-number { opacity:0; }
+.upstairs-numbered-scene .up-vanished .up-step-structure { opacity:0!important; }
+.upstairs-numbered-scene .up-vanished .up-step-trace { opacity:.32; }
+.upstairs-numbered-scene .up-vanished .up-ghost-number { opacity:1; fill:#ffb2bb; stroke:#173136; }
+.upstairs-numbered-scene .up-pair-outline { opacity:0; fill:none; stroke:#f4d68b; stroke-width:3; stroke-dasharray:6 4; pointer-events:none; }
+.upstairs-numbered-scene.up-highlighted-pair .up-pair-outline { opacity:1; }
+.up-agent { pointer-events:none; }
+.up-agent-art { overflow:hidden; }
+.up-door-frame { fill:#516d67; stroke:#a2ad8c; stroke-width:4; }
+.up-door-dark { fill:#071c24; }
+.up-door-leaf { fill:url(#up-door); stroke:#bdba8c; stroke-width:2; }
+.up-door-detail { fill:none; stroke:#bbc293; stroke-opacity:.45; stroke-width:3; }
+.up-door-knob { fill:#e8c975; stroke:#564c37; stroke-width:2; }
+.up-entrance-door[data-open=true] .up-door-leaf,
+.up-entrance-door[data-open=true] .up-door-detail,
+.up-entrance-door[data-open=true] .up-door-knob { opacity:0; }
+.up-exit-door[data-open=true] .up-door-leaf,
+.up-exit-door[data-open=true] .up-door-detail,
+.up-exit-door[data-open=true] .up-door-knob { opacity:0; }
+.up-exit-door[data-open=true] .up-door-dark { fill:#8fc4a1; }
+.up-wall-message text { fill:#ecd99f; font-family:"Chalkboard SE","Comic Sans MS",cursive; font-size:46px; font-weight:700; text-anchor:middle; paint-order:stroke; stroke:#12373c; stroke-width:1; }
+.up-wall-message .up-wall-signature { font-size:46px; fill:#d9cd9e; }
+.up-lantern { fill:#2c4745; stroke:#d8bd74; stroke-width:3; }
+.up-lantern .up-lantern-glow { fill:#f2cf82; stroke:none; }
+.up-floor-intact,.up-floor-open { fill:none; stroke:#93a38a; stroke-width:5; }
+.up-floor-open { opacity:0; }
+.up-pit-open .up-floor-open { opacity:1; }
+.up-pit-open .up-floor-intact { opacity:0; }
+.up-entry-plate rect { fill:#f0d58b; stroke:#fff1bc; stroke-width:3; }
+.up-entry-value { fill:#193b3b; font:800 48px ui-rounded,system-ui,sans-serif; text-anchor:middle; dominant-baseline:central; }
+
+/* The value comparison has its own layout space instead of covering the stairs. */
+.number-line-panel { min-width:160px; min-height:400px; padding:16px 10px 22px; border:1px solid #839f8b; border-radius:9px; background:#102d34; color:#f2f1d8; align-self:start; }
+.number-line-panel[hidden] { display:none!important; }
+.number-line-panel h3 { margin:0 0 24px; font:750 20px/1.2 system-ui,sans-serif; color:#ecdda7; text-align:center; }
+.number-line-chart { position:relative; height:332px; min-height:332px; margin:0 0 0 0; overflow:visible; }
+.number-line-axis { position:absolute; left:50px; top:0; bottom:0; width:2px; background:#bfd3c1; }
+.number-line-axis::before { content:""; position:absolute; left:-4px; top:0; width:8px; height:8px; border-left:2px solid #bfd3c1; border-top:2px solid #bfd3c1; transform:rotate(45deg); }
+.number-line-tick { position:absolute; left:46px; width:10px; height:2px; background:#9bb9aa; transform:translateY(50%); }
+.number-line-tick.number-line-major { left:43px; width:16px; background:#d1dfc4; }
+.number-line-tick-label { position:absolute; right:calc(100% + 7px); top:50%; transform:translateY(-50%); font:600 18px/1.2 system-ui,sans-serif; color:#e3e8d4; white-space:nowrap; }
+.number-line-step { position:absolute; left:50px; right:0; height:26px; transform:translateY(50%); }
+.number-line-guide { position:absolute; left:0; top:12px; width:23px; height:1px; background:#7eaa98; }
+.number-line-point { position:absolute; left:-4px; top:8px; width:10px; height:10px; border:1px solid #102d34; border-radius:50%; background:#a7efbf; }
+.number-line-value { display:block; margin-left:30px; font:750 20px/26px system-ui,sans-serif; color:#e8f5df; white-space:nowrap; }
+.number-line-false .number-line-point { background:#ffc2b8; }
+.number-line-false .number-line-value { color:#ffc2b8; }
