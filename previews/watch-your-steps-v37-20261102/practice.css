@@ -1,0 +1,16 @@
+/* Practice uses the same stairwell as the recovered recording. */
+.practice-scene .scene-strip { border-bottom-color: #6e947a; }
+.practice-choices { min-width: 0; min-inline-size: 0; display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 8px; border: 1px solid #8aa58e; border-radius: 8px; }
+.practice-choices legend { padding: 0 6px; color: var(--ink); font-size: 16px; line-height: 1.35; font-weight: 750; }
+.practice-option { min-width: 0; display: grid; gap: 5px; padding: 8px; border: 1px solid #789b8c; border-radius: 6px; background: #204348; }
+.practice-option h3 { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.3; font-weight: 750; }
+.practice-option-description { margin: 0; font-size: 16px; line-height: 1.3; }
+.practice-choices .number-form { margin-top: 0; }
+.practice-choices .number-field { flex-basis: 104px; gap: 4px; }
+.practice-option .primary-button { width: 100%; min-height: 44px; padding: 8px 10px; font-size: 16px; line-height: 1.3; }
+.practice-route-heading { margin: 0; font-size: 20px; line-height: 1.4; color: #f0d595; }
+@media (min-width:800px) and (min-height:560px) {
+  .practice-choices { gap: 6px; padding: 6px; }
+  .practice-option { gap: 4px; padding: 6px; }
+  .practice-choices .number-field label { line-height: 1.25; }
+}
